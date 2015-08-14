@@ -1,0 +1,22 @@
+# This is an appspec.yml template file for use with AWS CodeDeploy.
+# For help completing this file, see the "AppSpec File Reference" in the  
+#   "AWS CodeDeploy User Guide" at
+#   http://docs.aws.amazon.com/codedeploy/latest/userguide/app-spec-ref.html
+
+# do not change version, this is controlled by AWS
+version: 0.0
+os: linux 
+files:
+  - source: /
+    destination: /var/www/html/
+permissions:
+  - object: /var/www/html/
+    pattern: "*.html"
+    owner: root
+    group: root
+    mode: 755
+hooks:
+  AfterInstall:
+    - location: scripts/install_dependencies.sh
+      timeout: 600
+      runas: root
