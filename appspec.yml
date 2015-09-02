@@ -8,9 +8,9 @@ version: 0.0
 os: linux 
 files:
   - source: /
-    destination: /var/www/html/
+    destination: /var/www/html
 permissions:
-  - object: /var/www/html/
+  - object: /var/www/html
     pattern: "*.html"
     owner: root
     group: root
@@ -18,5 +18,5 @@ permissions:
 hooks:
   AfterInstall:
     - location: scripts/install_dependencies.sh
-      timeout: 600
+      timeout: 300
       runas: root
