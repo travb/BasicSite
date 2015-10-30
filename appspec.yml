@@ -15,8 +15,21 @@ permissions:
     owner: root
     group: root
     mode: 755
+  - object: /var/www/html/scripts
+    pattern: "*.sh"
+    owner: root
+    group: root
+    mode: 700
 hooks:
-  AfterInstall:
+  BeforeInstall:
     - location: scripts/install_dependencies.sh
       timeout: 300
+      runas: root
+  ApplicationStart:
+    - location: scripts/start_httpd.sh
+      timeout: 60
+      runas: root
+  ValidateService:
+    - location: scripts/validate_me.sh
+      timeout: 60
       runas: root

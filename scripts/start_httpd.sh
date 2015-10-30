@@ -13,5 +13,12 @@
 # express or implied. See the License for the specific language governing
 # permissions and limitations under the License.
 
-### install applications dependencies
-yum install -y httpd
+. $(dirname $0)/common_functions.sh
+
+if output=$(pgrep httpd >/dev/null); then
+  msg "Found httpd running, restarting"
+  service httpd graceful
+else
+  msg "httpd not running, starting"
+  service httpd start
+fi

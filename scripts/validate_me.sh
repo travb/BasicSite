@@ -13,5 +13,14 @@
 # express or implied. See the License for the specific language governing
 # permissions and limitations under the License.
 
-### install applications dependencies
-yum install -y httpd
+. $(dirname $0)/common_functions.sh
+
+http_code=$(curl -Ss -LI http://localhost -o /dev/null -w "%{http_code}" 2>/dev/null)
+
+if [ $http_code -eq 200 ] ; then
+  msg "Successfully hit site."
+  exit 0
+else
+  msg "Failed to load site."
+  exit 1
+fi
