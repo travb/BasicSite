@@ -1,0 +1,4 @@
+php:
+  version: '5.6'
+tests:
+  - tidy index.html
