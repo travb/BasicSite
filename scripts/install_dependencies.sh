@@ -15,3 +15,6 @@
 
 ### install applications dependencies
 yum install -y httpd
+
+### install chef
+curl -L https://www.chef.io/chef/install.sh | bash
